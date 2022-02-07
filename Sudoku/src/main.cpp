@@ -105,9 +105,8 @@ int main()
             updateWindow = false;
         }
     }
-
+    
     // Destructor
-    essentialsDestructor();
     for (auto& const ptr : grid)
         delete ptr;
     for (int i(0); i < 9; i++)
@@ -119,6 +118,7 @@ int main()
             ptr = 0;
         }
     }
-
+    essentialsDestructor();
+    
     return 0;
 }
