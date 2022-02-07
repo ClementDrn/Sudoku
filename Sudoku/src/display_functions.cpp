@@ -10,9 +10,9 @@ vector<RectangleShape*> createGrid()
 	{
 		unsigned int j((((i * 3) % 8) + 1) * 100);		// Creates lines in that order: 1, 4, 7, 2, 5, 8, 3, 6 (finishes with the darker lines).
 		RectangleShape* row = new RectangleShape(Vector2f(900, 1));
-		row->setPosition(0, j);
+		row->setPosition({ 0, (float)j });
 		RectangleShape* col = new RectangleShape(Vector2f(1, 900));
-		col->setPosition(j, 0);
+		col->setPosition({ (float)j, 0 });
 
 		Color color;
 		if (!(j % 3))

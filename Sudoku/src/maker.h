@@ -28,8 +28,8 @@ void createBoard(sf::RenderWindow& window, std::vector<sf::RectangleShape*>& gri
 			updateWin(window, grid, nums);
 			displayCount = 0;
 		}
-		
 	}
+
 	// Stop timer
 	timerStop = std::clock();
 	duration = (timerStop - timerStart) / (double)CLOCKS_PER_SEC;
@@ -43,7 +43,6 @@ void createBoard(sf::RenderWindow& window, std::vector<sf::RectangleShape*>& gri
 	updateWin(window, grid, nums);
 	std::cout << "A new board has been generated in " << duration << " seconds.\n";
 	std::cout << "Mean from " << durationsG.size() << " generations: " << mean << std::endl;
-	
 }
 /*
 void setClues(unsigned int clueQuantity)

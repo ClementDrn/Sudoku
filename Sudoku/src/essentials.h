@@ -22,8 +22,8 @@ void essentialsInit(std::vector<std::vector<std::vector<unsigned short int>>>* c
 	ptr_cells = cells;
 	ptr_nums = nums;
 	ptr_updateWindow = updateWindow;
-	if (!Consolas.loadFromFile("Consolas.ttf"))
-		std::cout << "Error when trying to load Consolas font.\n";
+	if (!Consolas.loadFromFile("assets/RobotoMono-Regular.ttf"))
+		std::cout << "Error when trying to load RobotoMono font.\n";
 }
 
 void essentialsDestructor()
@@ -58,7 +58,7 @@ void setCell(int short unsigned x, int short unsigned y, int short unsigned valu
 		{
 			*numText = new sf::Text(std::to_string(value), Consolas, 100);
 			sf::FloatRect bounds((*numText)->getLocalBounds());
-			(*numText)->setOrigin(bounds.left + bounds.width / 2, bounds.top + bounds.height / 2);
+			(*numText)->setOrigin({ bounds.left + bounds.width / 2, bounds.top + bounds.height / 2 });
 			(*numText)->setPosition(sf::Vector2f(x * 100 + 50, y * 100 + 50));
 		}
 

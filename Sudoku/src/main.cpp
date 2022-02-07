@@ -9,6 +9,16 @@
 using namespace std;
 using namespace sf;
 
+
+static enum class State
+{
+    Blank,
+    Generated,
+    Hinted,
+    Solved
+};
+
+
 int main()
 {
     std::cout << "HEY\n";
@@ -25,6 +35,8 @@ int main()
 
     // Other variables constructor
     bool updateWindow(true);
+
+    State state(State::Blank);
 
     // Essentials constructor
     essentialsInit(&cells, &nums, &updateWindow);
@@ -45,7 +57,7 @@ int main()
             {
                 winSize.x = event.size.width;
                 winSize.y = event.size.height;
-                window.setView(View(FloatRect(0, 0, winSize.x, winSize.y)));
+                window.setView(View(FloatRect({ 0.f, 0.f }, { (float)winSize.x, (float)winSize.y })));
             }
 
             // A key was pressed
@@ -57,19 +69,31 @@ int main()
 
                 // Board Generator "G"
                 if (event.key.code == Keyboard::G)
+                {
                     createBoard(window, grid, nums);
+                    state = State::Generated;
+                }
 
                 // Leave clues "H"
-                if (event.key.code == Keyboard::H)
+                if (event.key.code == Keyboard::H && state == State::Generated)
+                {
                     setClues(window, grid, nums, 25);
+                    state = State::Hinted;
+                }
 
                 // New blank board "N"
                 if (event.key.code == Keyboard::N)
+                {
                     clearBoard();
+                    state = State::Blank;
+                }
 
                 // Solve the Sudoku "S"
-                if (event.key.code == Keyboard::S)
+                if (event.key.code == Keyboard::S && state == State::Hinted)
+                {
                     solveSudoku(window, grid, nums);
+                    state = State::Solved;
+                }
             }
         }
 

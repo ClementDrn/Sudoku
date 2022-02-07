@@ -56,19 +56,30 @@ project "Sudoku"
 		"%{includedir.SFML}"
 	}
 
-	links {
-		"SFML"
+	defines {
+		"SFML_STATIC"
 	}
 
 	filter "system:windows"
 		systemversion "latest"
+		libdirs {
+			"%{prj.name}/vendor/SFML/extlibs/libs-msvc-universal/%{cfg.platform}/"
+		}
 	
+	filter {}
+	links {
+		"opengl32.lib",
+		"freetype.lib",
+		"winmm.lib",
+		"gdi32.lib",
+		"ws2_32.lib",
+		"SFML"
+	}
+
 	filter "configurations:Debug"
-		defines "PINE_DEBUG"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
-		defines "PINE_RELEASE"
 		runtime "Release"
 		optimize "on"
