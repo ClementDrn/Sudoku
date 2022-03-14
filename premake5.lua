@@ -62,6 +62,7 @@ project "Sudoku"
 		"%{includedir.SFML}",
 		"%{includedir.SEL}",
 		"%{includedir.ImGui}",
+		"%{includedir.ImGui_SFML}"
 	}
 
 	defines {

@@ -1,5 +1,8 @@
 #include "Application.hpp"
 
+#include "imgui.h"
+#include "imgui-SFML.h"
+
 #include <iostream>
 
 
@@ -39,6 +42,9 @@ namespace Sudoku {
     Application::Application()
         : sf::Application("Sudoku", { .winWidth = 900, .winHeight = 900, .clearColor = sf::Color::White })
     {
+        // ImGui init
+        ImGui::SFML::Init(*m_window);
+
         // Initialize sudoku randomness
         Sudoku::initRandomness();
 
@@ -103,12 +109,16 @@ namespace Sudoku {
 
     Application::~Application()
     {
+        ImGui::SFML::Shutdown();
+
         s_instance = nullptr;
     }
 
 
     void Application::onEvent(const sf::Event& e)
 	{
+        ImGui::SFML::ProcessEvent(*m_window, e);
+
         // The window has been closed
         if (e.type == sf::Event::Closed)
             m_window->close();
@@ -155,7 +165,11 @@ namespace Sudoku {
 
 	void Application::onUpdate(const sf::Time& ts)
 	{
+        ImGui::SFML::Update(*m_window, ts);
 
+        ImGui::Begin("Hello, world!");
+        ImGui::Button("Look at this pretty button");
+        ImGui::End();
 	}
 	
 	void Application::onRender()
@@ -189,6 +203,8 @@ namespace Sudoku {
                 }
             }
         }
+
+        ImGui::SFML::Render(*m_window);
 	}
 
 }
