@@ -236,7 +236,6 @@ namespace Sudoku {
 				break;
 
 			// Removes a clue
-			--clueCount;
 			lastRemovedClue = m_board[positions[clueIndex].x][positions[clueIndex].y];
 			m_board[positions[clueIndex].x][positions[clueIndex].y] = 0;
 
@@ -250,14 +249,16 @@ namespace Sudoku {
 			// Counts number of solutions
 			solutionCount = internalSolve(boardCopy, firstValues, false, 2);
 
-			if (solutionCount != 1)
+			if (solutionCount == 1)
+			{
+				--clueCount;
+			}
+			else
 			{
 				if (solutionCount == 0)
 					std::cout << "ERROR\n";
 				else
 					m_board[positions[clueIndex].x][positions[clueIndex].y] = lastRemovedClue;
-
-				break;
 			}
 		}
 
