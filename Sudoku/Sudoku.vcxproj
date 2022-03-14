@@ -177,15 +177,10 @@
   <ItemGroup>
     <ClInclude Include="src\Application.hpp" />
     <ClInclude Include="src\Sudoku.hpp" />
-    <ClInclude Include="src\display_functions.h" />
-    <ClInclude Include="src\essentials.h" />
-    <ClInclude Include="src\maker.h" />
-    <ClInclude Include="src\solver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Sudoku.cpp" />
-    <ClCompile Include="src\display_functions.cpp" />
     <ClCompile Include="src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
