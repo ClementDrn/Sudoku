@@ -25,6 +25,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 includedir = {}
 includedir["SFML"] = "Sudoku/vendor/SFML/include"
+includedir["SEL"] = "Sudoku/vendor/SEL/include"
 
 
 --- Dependencies ---------------------------
@@ -53,7 +54,8 @@ project "Sudoku"
 	}
 
 	includedirs {
-		"%{includedir.SFML}"
+		"%{includedir.SFML}",
+		"%{includedir.SEL}"
 	}
 
 	defines {

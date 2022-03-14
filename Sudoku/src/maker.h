@@ -4,6 +4,7 @@
 #include "display_functions.h"
 #include <ctime>
 
+
 void createBoard(sf::RenderWindow& window, std::vector<sf::RectangleShape*>& grid, std::vector<std::vector<sf::Text*>>& nums)
 {
 	clearBoard();
