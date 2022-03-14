@@ -8,3 +8,6 @@
 	path = Sudoku/vendor/imgui
 	url = https://github.com/ClementDrn/imgui/
 	branch = docking
+[submodule "Sudoku/vendor/imgui-sfml"]
+	path = Sudoku/vendor/imgui-sfml
+	url = https://github.com/ClementDrn/imgui-sfml

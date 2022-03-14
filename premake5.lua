@@ -26,11 +26,14 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 includedir = {}
 includedir["SFML"] = "Sudoku/vendor/SFML/include"
 includedir["SEL"] = "Sudoku/vendor/SEL/include"
+includedir["ImGui"] = "Sudoku/vendor/imgui"
+includedir["ImGui_SFML"] = "Sudoku/vendor/imgui-sfml"
 
 
 --- Dependencies ---------------------------
 group "Dependencies"
 	include "Sudoku/vendor/SFML"
+	include "Sudoku/vendor/imgui"
 group ""
 
 
@@ -44,22 +47,26 @@ project "Sudoku"
 	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
-	objdir("bin-int/" .. outputdir .. "/%{prj.name}")
+	objdir("obj/" .. outputdir .. "/%{prj.name}")
 
 	files {
 		"%{prj.name}/src/**.hpp",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.c"
+		"%{prj.name}/src/**.c",
+		"%{includedir.ImGui_SFML}/imgui-SFML.h",
+		"%{includedir.ImGui_SFML}/imgui-SFML.cpp"
 	}
 
 	includedirs {
 		"%{includedir.SFML}",
-		"%{includedir.SEL}"
+		"%{includedir.SEL}",
+		"%{includedir.ImGui}",
 	}
 
 	defines {
-		"SFML_STATIC"
+		"SFML_STATIC",
+		"IMGUI_SFML"
 	}
 
 	filter "system:windows"
@@ -75,7 +82,8 @@ project "Sudoku"
 		"winmm.lib",
 		"gdi32.lib",
 		"ws2_32.lib",
-		"SFML"
+		"SFML",
+		"ImGui"
 	}
 
 	filter "configurations:Debug"
