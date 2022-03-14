@@ -4,3 +4,7 @@
 [submodule "Sudoku/vendor/SEL"]
 	path = Sudoku/vendor/SEL
 	url = https://github.com/ClementDrn/SEL
+[submodule "Sudoku/vendor/imgui"]
+	path = Sudoku/vendor/imgui
+	url = https://github.com/ClementDrn/imgui/
+	branch = docking
