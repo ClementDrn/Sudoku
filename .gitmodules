@@ -1,3 +1,6 @@
 [submodule "Sudoku/vendor/SFML"]
 	path = Sudoku/vendor/SFML
 	url = https://github.com/ClementDrn/SFML
+[submodule "Sudoku/vendor/SEL"]
+	path = Sudoku/vendor/SEL
+	url = https://github.com/ClementDrn/SEL
