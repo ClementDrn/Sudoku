@@ -1,3 +1,13 @@
 [submodule "Sudoku/vendor/SFML"]
 	path = Sudoku/vendor/SFML
 	url = https://github.com/ClementDrn/SFML
+[submodule "Sudoku/vendor/SEL"]
+	path = Sudoku/vendor/SEL
+	url = https://github.com/ClementDrn/SEL
+[submodule "Sudoku/vendor/imgui"]
+	path = Sudoku/vendor/imgui
+	url = https://github.com/ClementDrn/imgui/
+	branch = docking
+[submodule "Sudoku/vendor/imgui-sfml"]
+	path = Sudoku/vendor/imgui-sfml
+	url = https://github.com/ClementDrn/imgui-sfml

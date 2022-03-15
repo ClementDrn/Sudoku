@@ -25,11 +25,15 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 includedir = {}
 includedir["SFML"] = "Sudoku/vendor/SFML/include"
+includedir["SEL"] = "Sudoku/vendor/SEL/include"
+includedir["ImGui"] = "Sudoku/vendor/imgui"
+includedir["ImGui_SFML"] = "Sudoku/vendor/imgui-sfml"
 
 
 --- Dependencies ---------------------------
 group "Dependencies"
 	include "Sudoku/vendor/SFML"
+	include "Sudoku/vendor/imgui"
 group ""
 
 
@@ -37,30 +41,36 @@ group ""
 project "Sudoku"
 
 	location "Sudoku"
-	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++20"
 	staticruntime "on"
 
 	targetdir("bin/" .. outputdir .. "/%{prj.name}")
-	objdir("bin-int/" .. outputdir .. "/%{prj.name}")
+	objdir("obj/" .. outputdir .. "/%{prj.name}")
 
 	files {
 		"%{prj.name}/src/**.hpp",
 		"%{prj.name}/src/**.cpp",
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.c"
+		"%{prj.name}/src/**.c",
+		"%{includedir.ImGui_SFML}/imgui-SFML.h",
+		"%{includedir.ImGui_SFML}/imgui-SFML.cpp"
 	}
 
 	includedirs {
-		"%{includedir.SFML}"
+		"%{includedir.SFML}",
+		"%{includedir.SEL}",
+		"%{includedir.ImGui}",
+		"%{includedir.ImGui_SFML}"
 	}
 
 	defines {
-		"SFML_STATIC"
+		"SFML_STATIC",
+		"IMGUI_SFML"
 	}
 
 	filter "system:windows"
+		entrypoint "mainCRTStartup"
 		systemversion "latest"
 		libdirs {
 			"%{prj.name}/vendor/SFML/extlibs/libs-msvc-universal/%{cfg.platform}/"
@@ -73,13 +83,16 @@ project "Sudoku"
 		"winmm.lib",
 		"gdi32.lib",
 		"ws2_32.lib",
-		"SFML"
+		"SFML",
+		"ImGui"
 	}
 
 	filter "configurations:Debug"
+		kind "ConsoleApp"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
+		kind "WindowedApp"
 		runtime "Release"
 		optimize "on"
