@@ -36,6 +36,7 @@ namespace Sudoku {
 
 		// Sudoku
 		Sudoku m_sudoku;
+		int m_minClueCount = 25;
 
 		bool m_updateWindow = true;
 

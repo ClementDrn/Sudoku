@@ -129,46 +129,28 @@ namespace Sudoku {
             m_window->setSize({ e.size.width, e.size.height });
             m_window->setView(sf::View(sf::FloatRect({ 0.0f, 0.0f }, { (float)e.size.width, (float)e.size.height })));
         }
-
-        // A key has been pressed
-        if (e.type == sf::Event::KeyPressed)
-        {
-            // The escape key
-            if (e.key.code == sf::Keyboard::Escape)
-                m_window->close();
-
-            // Board Generator "G"
-            if (e.key.code == sf::Keyboard::G)
-            {
-                m_sudoku.generate();
-            }
-
-            // Leave clues "P"
-            if (e.key.code == sf::Keyboard::P)
-            {
-                m_sudoku.prepare(25);
-            }
-
-            // New blank board "N"
-            if (e.key.code == sf::Keyboard::N)
-            {
-                m_sudoku.clear();
-            }
-
-            // Solve the Sudoku "S"
-            if (e.key.code == sf::Keyboard::S)
-            {
-                m_sudoku.solve();
-            }
-        }
 	}
 
 	void Application::onUpdate(const sf::Time& ts)
 	{
         ImGui::SFML::Update(*m_window, ts);
 
-        ImGui::Begin("Hello, world!");
-        ImGui::Button("Look at this pretty button");
+        if (ImGui::Begin("Sudoku commands"))
+        {
+            if (ImGui::Button("New"))
+                m_sudoku.clear();
+
+            if (ImGui::Button("Generate"))
+                m_sudoku.generate();
+
+            ImGui::SliderInt("Minimum number of clues", &m_minClueCount, 1, 81);
+
+            if (ImGui::Button("Leave only clues"))
+                m_sudoku.prepare(m_minClueCount);
+
+            if (ImGui::Button("Solve"))
+                m_sudoku.solve();
+        }
         ImGui::End();
 	}
 	
