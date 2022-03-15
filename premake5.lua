@@ -41,7 +41,6 @@ group ""
 project "Sudoku"
 
 	location "Sudoku"
-	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++20"
 	staticruntime "on"
@@ -71,6 +70,7 @@ project "Sudoku"
 	}
 
 	filter "system:windows"
+		entrypoint "mainCRTStartup"
 		systemversion "latest"
 		libdirs {
 			"%{prj.name}/vendor/SFML/extlibs/libs-msvc-universal/%{cfg.platform}/"
@@ -88,9 +88,11 @@ project "Sudoku"
 	}
 
 	filter "configurations:Debug"
+		kind "ConsoleApp"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
+		kind "WindowedApp"
 		runtime "Release"
 		optimize "on"
